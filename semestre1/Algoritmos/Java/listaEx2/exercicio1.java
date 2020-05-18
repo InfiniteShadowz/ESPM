@@ -20,9 +20,7 @@ public class exercicio1 {
 		// e)
 		res = A/B%B%A%C != B%A%B%C%A;
 		System.out.println("e) "+res);
-		
-		
-		input.close();
+
 		
 	}
 
