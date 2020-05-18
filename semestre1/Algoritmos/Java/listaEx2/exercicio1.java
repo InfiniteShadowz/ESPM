@@ -22,7 +22,7 @@ public class exercicio1 {
 		System.out.println("e) "+res);
 		
 		
-		
+		input.close();
 		
 	}
 
