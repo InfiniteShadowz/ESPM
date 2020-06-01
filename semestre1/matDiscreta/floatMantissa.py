@@ -28,7 +28,7 @@ binarioFinal.append(signedDecimal)
 #percorre do expoente 10 até o -18
 for exp in range(10, -19, -1):
   #se o inputado - resultado do expoente > 0:  
-  if decimal - res > 0:
+  if decimal - res >= 0:
     decimal -= res
     start = True
     #a variavel start determina se o numero ja se iniciou (inicia no primeiro '1' dropado)
