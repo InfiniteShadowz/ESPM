@@ -6,63 +6,65 @@ decimal = float(input("digite o decimal float para transformar para binario (lem
 res = 1024.0
 binario = []
 headers = []
+binarioFinal = []
 start = False
 count = 0
-ten = 10
+numSignedExp = 0
 
-binarioFinal = []
-
+#Faz a verificação do input do usuario, entre + ou -
 if decimal < 0:
     signedDecimal = 1
+    #evita trabalhar com num negativo no cod principal
     decimal *= -1
 else:
     signedDecimal = 0
 
-#firstADD
+#firstADD - adiciona o sinal do numero no binario Final
 binarioFinal.append(signedDecimal)
 
-numSignedExp = 0
 
 ###############################################
 
+#percorre do expoente 10 até o -18
 for exp in range(10, -19, -1):
-
-    #if exp % 2 == 0:
-       #print('Expoente {} => {}'.format(exp, res),end = ' ')
-    #else:
-       #print("Expoente {} => {}".format(exp, res),end = ' ')
-        
+  #se o inputado - resultado do expoente > 0:  
   if decimal - res > 0:
-    #print("[1]")
-    #print(40 * "=")
     decimal -= res
     start = True
+    #a variavel start determina se o numero ja se iniciou (inicia no primeiro '1' dropado)
     if start:
       headers.append(exp)
       binario.append(1)
+      #conta quantos digitos há depois do start ativado, a variavel foi criada pensando em como pegar o primeiro expoente ativado
       count +=1
       if start and count == 1:
         numSignedExp = exp
   else:
-    #print("0")
     if start:
       headers.append(exp)
       binario.append(0)
       count +=1
-   
+  #corta o resultadoExpoente por 2, para ir para o expoente anterior
   res /= 2
 
 
 ###############################################
 
+#determina, por padrao somente, que o sinal do expoente é +
 signedExp = 0
 
+#Se o primeiro expoente for menor que 0:
 if numSignedExp < 0:
+  #o sinal do expoente se torna ativo (1)
   signedExp = 1
+  #torna-se positivo para trabalhar com numero positivo
   numSignedExp *= -1
-  
+
+#coloca o sinal do expoente no binario Final 
 binarioFinal.append(signedExp)
 
+
+#Coloca o trecho de  4 binarios dentro do binario Final:
 for i in range(3, -1, -1):
   aux = numSignedExp
   numSignedExp = numSignedExp - 2**i
@@ -72,13 +74,14 @@ for i in range(3, -1, -1):
   else:
     binarioFinal.append(1)
     
-    
+#Resultados do 1berto:   
 # 1.6666666666 = 0000.0010.1010.1010 
 # -0.0735 = 1101.0000.1011.0100 
 # -240.25 = 1001.1111.1000.0010 
 # 45.1875 = 0001.0101.1010.0110 
+#Alguns numeros dão diferente no programa, acredito que por distinções de precisão de cada calculadora/programa utilizado
 
-
+#Escreve na tela desde o primeiro elemento até o ultimo contado da lista de binario
 for i in range(0, count):
   numBin = binario[i]
   expoente = headers[i]
@@ -87,11 +90,12 @@ for i in range(0, count):
 #esconde o primeiro digito 1 (natural da mantissa, pois trata-se de uma redundância)
 del binario[0]
 
+#Como o programa é em 16Bits, é necessário somente 10 digitos de mantissa, logo:
 for i in range(0, 10):
   binarioFinal.append(binario[i])
 
 
-print("Resultado Final:\n")
+print("\nResultado Final:\n")
 print(binarioFinal)
 
 #descomente essa linha para usar o programa no cmd:
