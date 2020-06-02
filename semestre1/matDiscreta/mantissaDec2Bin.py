@@ -98,6 +98,6 @@ for i in range(0, 10):
 print("\nResultado Final:\n")
 print(binarioFinal)
 
-#descomente essa linha para usar o programa no cmd:
+#descomente a linha abaixo para usar o programa no cmd:
 #input()
 
